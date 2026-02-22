@@ -1,0 +1,199 @@
+{
+  "users": {
+    "columns": [
+      {"name": "user_id", "type": "integer", "nullable": false},
+      {"name": "username", "type": "character varying", "nullable": false},
+      {"name": "email", "type": "character varying", "nullable": false},
+      {"name": "full_name", "type": "character varying", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": true},
+      {"name": "is_active", "type": "boolean", "nullable": true}
+    ],
+    "relationships": [],
+    "row_count": 150000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "user_id": 1.0,
+        "username": 1.0,
+        "email": 1.0,
+        "full_name": 0.95,
+        "created_at": 1.0,
+        "is_active": 1.0
+      },
+      "uniqueness_ratio": {
+        "user_id": 1.0,
+        "username": 1.0,
+        "email": 1.0,
+        "full_name": 0.98,
+        "created_at": 0.85,
+        "is_active": 0.02
+      }
+    },
+    "ai_summary": "The 'users' table stores customer account information including authentication credentials and profile data. It serves as the central repository for user identity management with 150,000 registered users. Key columns include user_id (unique identifier), username, email, and account status. This table is referenced by orders and reviews tables, making it critical for customer relationship management and order tracking."
+  },
+  "products": {
+    "columns": [
+      {"name": "product_id", "type": "integer", "nullable": false},
+      {"name": "product_name", "type": "character varying", "nullable": false},
+      {"name": "description", "type": "text", "nullable": true},
+      {"name": "price", "type": "numeric", "nullable": false},
+      {"name": "stock_quantity", "type": "integer", "nullable": true},
+      {"name": "category", "type": "character varying", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": true}
+    ],
+    "relationships": [],
+    "row_count": 25000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "product_id": 1.0,
+        "product_name": 1.0,
+        "description": 0.92,
+        "price": 1.0,
+        "stock_quantity": 0.98,
+        "category": 0.99,
+        "created_at": 1.0
+      },
+      "uniqueness_ratio": {
+        "product_id": 1.0,
+        "product_name": 0.95,
+        "description": 0.88,
+        "price": 0.45,
+        "stock_quantity": 0.35,
+        "category": 0.05,
+        "created_at": 0.75
+      }
+    },
+    "ai_summary": "The 'products' table maintains the complete product catalog with 25,000 items including pricing, inventory levels, and categorization. Essential for e-commerce operations, it stores product details, stock quantities, and pricing information. The table supports inventory management and is referenced by order_items for transaction processing. Categories help organize products for better customer navigation and reporting."
+  },
+  "orders": {
+    "columns": [
+      {"name": "order_id", "type": "integer", "nullable": false},
+      {"name": "user_id", "type": "integer", "nullable": true},
+      {"name": "order_date", "type": "timestamp", "nullable": true},
+      {"name": "total_amount", "type": "numeric", "nullable": true},
+      {"name": "status", "type": "character varying", "nullable": true},
+      {"name": "shipping_address", "type": "text", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "user_id", "target_table": "users", "target_column": "user_id"}
+    ],
+    "row_count": 450000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "order_id": 1.0,
+        "user_id": 0.99,
+        "order_date": 1.0,
+        "total_amount": 0.98,
+        "status": 1.0,
+        "shipping_address": 0.96
+      },
+      "uniqueness_ratio": {
+        "order_id": 1.0,
+        "user_id": 0.35,
+        "order_date": 0.92,
+        "total_amount": 0.65,
+        "status": 0.05,
+        "shipping_address": 0.78
+      }
+    },
+    "ai_summary": "The 'orders' table tracks all customer purchases with 450,000 transaction records. It links customers to their orders through user_id foreign key and maintains order status, dates, and shipping information. Critical for order fulfillment and customer service, this table enables tracking of order lifecycle from placement to delivery. The status field supports workflow management with values like pending, processing, shipped, and completed."
+  },
+  "order_items": {
+    "columns": [
+      {"name": "item_id", "type": "integer", "nullable": false},
+      {"name": "order_id", "type": "integer", "nullable": true},
+      {"name": "product_id", "type": "integer", "nullable": true},
+      {"name": "quantity", "type": "integer", "nullable": false},
+      {"name": "unit_price", "type": "numeric", "nullable": false},
+      {"name": "subtotal", "type": "numeric", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "order_id", "target_table": "orders", "target_column": "order_id"},
+      {"source_column": "product_id", "target_table": "products", "target_column": "product_id"}
+    ],
+    "row_count": 1200000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "item_id": 1.0,
+        "order_id": 1.0,
+        "product_id": 1.0,
+        "quantity": 1.0,
+        "unit_price": 1.0,
+        "subtotal": 0.99
+      },
+      "uniqueness_ratio": {
+        "item_id": 1.0,
+        "order_id": 0.42,
+        "product_id": 0.18,
+        "quantity": 0.08,
+        "unit_price": 0.35,
+        "subtotal": 0.55
+      }
+    },
+    "ai_summary": "The 'order_items' table stores individual line items for each order with 1.2 million records, representing the many-to-many relationship between orders and products. Each record captures product quantity, pricing at time of purchase, and calculated subtotals. This table is essential for order detail reporting, revenue analysis, and inventory tracking. It enables detailed sales analytics and product performance metrics."
+  },
+  "categories": {
+    "columns": [
+      {"name": "category_id", "type": "integer", "nullable": false},
+      {"name": "category_name", "type": "character varying", "nullable": false},
+      {"name": "description", "type": "text", "nullable": true},
+      {"name": "parent_category_id", "type": "integer", "nullable": true}
+    ],
+    "relationships": [],
+    "row_count": 450,
+    "profile": {
+      "rows_sampled": 450,
+      "completeness": {
+        "category_id": 1.0,
+        "category_name": 1.0,
+        "description": 0.88,
+        "parent_category_id": 0.65
+      },
+      "uniqueness_ratio": {
+        "category_id": 1.0,
+        "category_name": 1.0,
+        "description": 0.92,
+        "parent_category_id": 0.15
+      }
+    },
+    "ai_summary": "The 'categories' table organizes products into hierarchical classifications with 450 categories. It supports nested category structures through parent_category_id for multi-level product organization. This table enables product filtering, navigation, and reporting by category. The hierarchical structure allows for both broad and specific product groupings, improving customer browsing experience and inventory management."
+  },
+  "reviews": {
+    "columns": [
+      {"name": "review_id", "type": "integer", "nullable": false},
+      {"name": "product_id", "type": "integer", "nullable": true},
+      {"name": "user_id", "type": "integer", "nullable": true},
+      {"name": "rating", "type": "integer", "nullable": false},
+      {"name": "review_text", "type": "text", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "product_id", "target_table": "products", "target_column": "product_id"},
+      {"source_column": "user_id", "target_table": "users", "target_column": "user_id"}
+    ],
+    "row_count": 85000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "review_id": 1.0,
+        "product_id": 1.0,
+        "user_id": 0.98,
+        "rating": 1.0,
+        "review_text": 0.75,
+        "created_at": 1.0
+      },
+      "uniqueness_ratio": {
+        "review_id": 1.0,
+        "product_id": 0.45,
+        "user_id": 0.62,
+        "rating": 0.05,
+        "review_text": 0.95,
+        "created_at": 0.88
+      }
+    },
+    "ai_summary": "The 'reviews' table captures customer feedback with 85,000 product reviews including ratings and text comments. It links customers to products they've reviewed, enabling product quality assessment and customer sentiment analysis. The rating system (typically 1-5 stars) provides quantitative feedback, while review_text offers qualitative insights. This data is crucial for product improvement, customer trust building, and purchase decision support."
+  }
+}

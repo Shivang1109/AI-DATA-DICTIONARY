@@ -1,0 +1,446 @@
+{
+  "users": {
+    "columns": [
+      {"name": "user_id", "type": "integer", "nullable": false},
+      {"name": "username", "type": "character varying", "nullable": false},
+      {"name": "email", "type": "character varying", "nullable": false},
+      {"name": "full_name", "type": "character varying", "nullable": true},
+      {"name": "phone", "type": "character varying", "nullable": true},
+      {"name": "date_of_birth", "type": "date", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": true},
+      {"name": "updated_at", "type": "timestamp", "nullable": true},
+      {"name": "is_active", "type": "boolean", "nullable": true},
+      {"name": "last_login", "type": "timestamp", "nullable": true}
+    ],
+    "relationships": [],
+    "row_count": 250000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "user_id": 1.0,
+        "username": 1.0,
+        "email": 1.0,
+        "full_name": 0.95,
+        "phone": 0.78,
+        "date_of_birth": 0.82,
+        "created_at": 1.0,
+        "updated_at": 0.92,
+        "is_active": 1.0,
+        "last_login": 0.88
+      },
+      "uniqueness_ratio": {
+        "user_id": 1.0,
+        "username": 1.0,
+        "email": 1.0,
+        "full_name": 0.98,
+        "phone": 0.95,
+        "date_of_birth": 0.45,
+        "created_at": 0.85,
+        "updated_at": 0.82,
+        "is_active": 0.02,
+        "last_login": 0.75
+      }
+    },
+    "ai_summary": "The 'users' table is the central repository for customer account information in the e-commerce platform. It stores authentication credentials, personal details, and account status for 250,000 registered users. This table serves as the primary reference for user identity across the system, with foreign key relationships to orders, reviews, and shipping addresses. High data quality with 95%+ completeness on critical fields makes it reliable for customer analytics and personalization."
+  },
+  "products": {
+    "columns": [
+      {"name": "product_id", "type": "integer", "nullable": false},
+      {"name": "product_name", "type": "character varying", "nullable": false},
+      {"name": "description", "type": "text", "nullable": true},
+      {"name": "price", "type": "numeric", "nullable": false},
+      {"name": "cost", "type": "numeric", "nullable": true},
+      {"name": "stock_quantity", "type": "integer", "nullable": true},
+      {"name": "category_id", "type": "integer", "nullable": true},
+      {"name": "brand", "type": "character varying", "nullable": true},
+      {"name": "sku", "type": "character varying", "nullable": false},
+      {"name": "weight", "type": "numeric", "nullable": true},
+      {"name": "dimensions", "type": "character varying", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": true},
+      {"name": "updated_at", "type": "timestamp", "nullable": true},
+      {"name": "is_active", "type": "boolean", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "category_id", "target_table": "categories", "target_column": "category_id"}
+    ],
+    "row_count": 45000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "product_id": 1.0,
+        "product_name": 1.0,
+        "description": 0.88,
+        "price": 1.0,
+        "cost": 0.92,
+        "stock_quantity": 0.98,
+        "category_id": 0.95,
+        "brand": 0.85,
+        "sku": 1.0,
+        "weight": 0.75,
+        "dimensions": 0.68,
+        "created_at": 1.0,
+        "updated_at": 0.94,
+        "is_active": 1.0
+      },
+      "uniqueness_ratio": {
+        "product_id": 1.0,
+        "product_name": 0.98,
+        "description": 0.95,
+        "price": 0.35,
+        "cost": 0.42,
+        "stock_quantity": 0.15,
+        "category_id": 0.02,
+        "brand": 0.05,
+        "sku": 1.0,
+        "weight": 0.25,
+        "dimensions": 0.18,
+        "created_at": 0.88,
+        "updated_at": 0.85,
+        "is_active": 0.02
+      }
+    },
+    "ai_summary": "The 'products' table contains the complete product catalog with 45,000 items. It stores essential product information including pricing, inventory levels, and physical attributes. Each product is linked to a category and includes detailed descriptions for customer browsing. The SKU field ensures unique product identification across the supply chain. This table is critical for inventory management, pricing strategies, and product recommendations."
+  },
+  "categories": {
+    "columns": [
+      {"name": "category_id", "type": "integer", "nullable": false},
+      {"name": "category_name", "type": "character varying", "nullable": false},
+      {"name": "parent_category_id", "type": "integer", "nullable": true},
+      {"name": "description", "type": "text", "nullable": true},
+      {"name": "image_url", "type": "character varying", "nullable": true},
+      {"name": "display_order", "type": "integer", "nullable": true},
+      {"name": "is_active", "type": "boolean", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "parent_category_id", "target_table": "categories", "target_column": "category_id"}
+    ],
+    "row_count": 250,
+    "profile": {
+      "rows_sampled": 250,
+      "completeness": {
+        "category_id": 1.0,
+        "category_name": 1.0,
+        "parent_category_id": 0.65,
+        "description": 0.92,
+        "image_url": 0.88,
+        "display_order": 1.0,
+        "is_active": 1.0
+      },
+      "uniqueness_ratio": {
+        "category_id": 1.0,
+        "category_name": 1.0,
+        "parent_category_id": 0.15,
+        "description": 0.98,
+        "image_url": 0.85,
+        "display_order": 0.95,
+        "is_active": 0.02
+      }
+    },
+    "ai_summary": "The 'categories' table organizes products into a hierarchical taxonomy with 250 categories. It supports nested categories through the parent_category_id self-reference, enabling multi-level product organization. This structure powers the navigation menu, product filtering, and category-based analytics. The display_order field controls how categories appear in the UI, making it essential for merchandising strategies."
+  },
+  "orders": {
+    "columns": [
+      {"name": "order_id", "type": "integer", "nullable": false},
+      {"name": "user_id", "type": "integer", "nullable": false},
+      {"name": "order_date", "type": "timestamp", "nullable": false},
+      {"name": "status", "type": "character varying", "nullable": false},
+      {"name": "total_amount", "type": "numeric", "nullable": false},
+      {"name": "shipping_cost", "type": "numeric", "nullable": true},
+      {"name": "tax_amount", "type": "numeric", "nullable": true},
+      {"name": "discount_amount", "type": "numeric", "nullable": true},
+      {"name": "payment_method", "type": "character varying", "nullable": true},
+      {"name": "shipping_address_id", "type": "integer", "nullable": true},
+      {"name": "tracking_number", "type": "character varying", "nullable": true},
+      {"name": "estimated_delivery", "type": "date", "nullable": true},
+      {"name": "delivered_at", "type": "timestamp", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "user_id", "target_table": "users", "target_column": "user_id"},
+      {"source_column": "shipping_address_id", "target_table": "shipping_addresses", "target_column": "address_id"}
+    ],
+    "row_count": 850000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "order_id": 1.0,
+        "user_id": 1.0,
+        "order_date": 1.0,
+        "status": 1.0,
+        "total_amount": 1.0,
+        "shipping_cost": 0.95,
+        "tax_amount": 0.98,
+        "discount_amount": 0.45,
+        "payment_method": 0.99,
+        "shipping_address_id": 0.97,
+        "tracking_number": 0.82,
+        "estimated_delivery": 0.88,
+        "delivered_at": 0.65
+      },
+      "uniqueness_ratio": {
+        "order_id": 1.0,
+        "user_id": 0.28,
+        "order_date": 0.75,
+        "status": 0.01,
+        "total_amount": 0.85,
+        "shipping_cost": 0.05,
+        "tax_amount": 0.45,
+        "discount_amount": 0.15,
+        "payment_method": 0.01,
+        "shipping_address_id": 0.35,
+        "tracking_number": 0.98,
+        "estimated_delivery": 0.25,
+        "delivered_at": 0.68
+      }
+    },
+    "ai_summary": "The 'orders' table is the transaction hub with 850,000 order records. It captures the complete order lifecycle from placement to delivery, including financial details, shipping information, and status tracking. Each order links to a customer and shipping address, with detailed breakdowns of costs. This table is essential for revenue reporting, fulfillment operations, and customer service. The status field tracks orders through stages: pending, processing, shipped, delivered, or cancelled."
+  },
+  "order_items": {
+    "columns": [
+      {"name": "order_item_id", "type": "integer", "nullable": false},
+      {"name": "order_id", "type": "integer", "nullable": false},
+      {"name": "product_id", "type": "integer", "nullable": false},
+      {"name": "quantity", "type": "integer", "nullable": false},
+      {"name": "unit_price", "type": "numeric", "nullable": false},
+      {"name": "discount", "type": "numeric", "nullable": true},
+      {"name": "subtotal", "type": "numeric", "nullable": false}
+    ],
+    "relationships": [
+      {"source_column": "order_id", "target_table": "orders", "target_column": "order_id"},
+      {"source_column": "product_id", "target_table": "products", "target_column": "product_id"}
+    ],
+    "row_count": 2100000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "order_item_id": 1.0,
+        "order_id": 1.0,
+        "product_id": 1.0,
+        "quantity": 1.0,
+        "unit_price": 1.0,
+        "discount": 0.35,
+        "subtotal": 1.0
+      },
+      "uniqueness_ratio": {
+        "order_item_id": 1.0,
+        "order_id": 0.42,
+        "product_id": 0.15,
+        "quantity": 0.02,
+        "unit_price": 0.25,
+        "discount": 0.08,
+        "subtotal": 0.65
+      }
+    },
+    "ai_summary": "The 'order_items' table contains line-item details for all orders with 2.1 million records. Each row represents a single product within an order, capturing quantity, pricing, and discounts. This granular data enables product-level analytics, inventory tracking, and revenue attribution. The table links orders to products, making it crucial for understanding purchasing patterns, popular products, and basket analysis."
+  },
+  "reviews": {
+    "columns": [
+      {"name": "review_id", "type": "integer", "nullable": false},
+      {"name": "product_id", "type": "integer", "nullable": false},
+      {"name": "user_id", "type": "integer", "nullable": false},
+      {"name": "rating", "type": "integer", "nullable": false},
+      {"name": "title", "type": "character varying", "nullable": true},
+      {"name": "comment", "type": "text", "nullable": true},
+      {"name": "helpful_count", "type": "integer", "nullable": true},
+      {"name": "verified_purchase", "type": "boolean", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": false}
+    ],
+    "relationships": [
+      {"source_column": "product_id", "target_table": "products", "target_column": "product_id"},
+      {"source_column": "user_id", "target_table": "users", "target_column": "user_id"}
+    ],
+    "row_count": 125000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "review_id": 1.0,
+        "product_id": 1.0,
+        "user_id": 1.0,
+        "rating": 1.0,
+        "title": 0.88,
+        "comment": 0.92,
+        "helpful_count": 1.0,
+        "verified_purchase": 0.95,
+        "created_at": 1.0
+      },
+      "uniqueness_ratio": {
+        "review_id": 1.0,
+        "product_id": 0.35,
+        "user_id": 0.65,
+        "rating": 0.01,
+        "title": 0.85,
+        "comment": 0.98,
+        "helpful_count": 0.15,
+        "verified_purchase": 0.02,
+        "created_at": 0.95
+      }
+    },
+    "ai_summary": "The 'reviews' table stores customer feedback with 125,000 product reviews. It captures ratings (1-5 stars), written comments, and verification status. The helpful_count field enables community-driven review ranking. This data is vital for product quality insights, customer sentiment analysis, and social proof in the shopping experience. Verified purchase flags help identify authentic reviews from actual customers."
+  },
+  "payments": {
+    "columns": [
+      {"name": "payment_id", "type": "integer", "nullable": false},
+      {"name": "order_id", "type": "integer", "nullable": false},
+      {"name": "payment_method", "type": "character varying", "nullable": false},
+      {"name": "amount", "type": "numeric", "nullable": false},
+      {"name": "currency", "type": "character varying", "nullable": false},
+      {"name": "status", "type": "character varying", "nullable": false},
+      {"name": "transaction_id", "type": "character varying", "nullable": true},
+      {"name": "payment_date", "type": "timestamp", "nullable": false},
+      {"name": "processor", "type": "character varying", "nullable": true},
+      {"name": "card_last_four", "type": "character varying", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "order_id", "target_table": "orders", "target_column": "order_id"}
+    ],
+    "row_count": 850000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "payment_id": 1.0,
+        "order_id": 1.0,
+        "payment_method": 1.0,
+        "amount": 1.0,
+        "currency": 1.0,
+        "status": 1.0,
+        "transaction_id": 0.98,
+        "payment_date": 1.0,
+        "processor": 0.95,
+        "card_last_four": 0.65
+      },
+      "uniqueness_ratio": {
+        "payment_id": 1.0,
+        "order_id": 1.0,
+        "payment_method": 0.01,
+        "amount": 0.75,
+        "currency": 0.01,
+        "status": 0.01,
+        "transaction_id": 1.0,
+        "payment_date": 0.85,
+        "processor": 0.01,
+        "card_last_four": 0.15
+      }
+    },
+    "ai_summary": "The 'payments' table records all financial transactions with 850,000 payment records. It tracks payment methods, amounts, processing status, and external transaction IDs. Each payment is linked to an order, supporting one-to-one order-payment relationships. This table is critical for financial reconciliation, fraud detection, and payment analytics. The status field tracks payment states: pending, completed, failed, or refunded."
+  },
+  "shipping_addresses": {
+    "columns": [
+      {"name": "address_id", "type": "integer", "nullable": false},
+      {"name": "user_id", "type": "integer", "nullable": false},
+      {"name": "address_line1", "type": "character varying", "nullable": false},
+      {"name": "address_line2", "type": "character varying", "nullable": true},
+      {"name": "city", "type": "character varying", "nullable": false},
+      {"name": "state", "type": "character varying", "nullable": false},
+      {"name": "postal_code", "type": "character varying", "nullable": false},
+      {"name": "country", "type": "character varying", "nullable": false},
+      {"name": "is_default", "type": "boolean", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "user_id", "target_table": "users", "target_column": "user_id"}
+    ],
+    "row_count": 380000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "address_id": 1.0,
+        "user_id": 1.0,
+        "address_line1": 1.0,
+        "address_line2": 0.45,
+        "city": 1.0,
+        "state": 1.0,
+        "postal_code": 1.0,
+        "country": 1.0,
+        "is_default": 1.0,
+        "created_at": 1.0
+      },
+      "uniqueness_ratio": {
+        "address_id": 1.0,
+        "user_id": 0.65,
+        "address_line1": 0.95,
+        "address_line2": 0.85,
+        "city": 0.05,
+        "state": 0.02,
+        "postal_code": 0.25,
+        "country": 0.01,
+        "is_default": 0.02,
+        "created_at": 0.88
+      }
+    },
+    "ai_summary": "The 'shipping_addresses' table manages delivery locations with 380,000 address records. Users can store multiple addresses, with one marked as default for convenience. This table supports international shipping with country-specific fields. It's referenced by orders for fulfillment and enables geographic analysis of customer distribution. The data quality is high with complete required fields for successful deliveries."
+  },
+  "inventory_transactions": {
+    "columns": [
+      {"name": "transaction_id", "type": "integer", "nullable": false},
+      {"name": "product_id", "type": "integer", "nullable": false},
+      {"name": "transaction_type", "type": "character varying", "nullable": false},
+      {"name": "quantity", "type": "integer", "nullable": false},
+      {"name": "reference_id", "type": "integer", "nullable": true},
+      {"name": "notes", "type": "text", "nullable": true},
+      {"name": "created_at", "type": "timestamp", "nullable": false},
+      {"name": "created_by", "type": "integer", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "product_id", "target_table": "products", "target_column": "product_id"}
+    ],
+    "row_count": 1500000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "transaction_id": 1.0,
+        "product_id": 1.0,
+        "transaction_type": 1.0,
+        "quantity": 1.0,
+        "reference_id": 0.75,
+        "notes": 0.35,
+        "created_at": 1.0,
+        "created_by": 0.88
+      },
+      "uniqueness_ratio": {
+        "transaction_id": 1.0,
+        "product_id": 0.15,
+        "transaction_type": 0.01,
+        "quantity": 0.05,
+        "reference_id": 0.65,
+        "notes": 0.92,
+        "created_at": 0.95,
+        "created_by": 0.02
+      }
+    },
+    "ai_summary": "The 'inventory_transactions' table is an audit log with 1.5 million inventory movements. It tracks all stock changes including purchases, sales, returns, adjustments, and transfers. Each transaction records the type, quantity change, and optional reference to related orders or purchase orders. This historical data enables inventory reconciliation, shrinkage analysis, and supply chain optimization. Transaction types include: sale, purchase, return, adjustment, and transfer."
+  },
+  "wishlists": {
+    "columns": [
+      {"name": "wishlist_id", "type": "integer", "nullable": false},
+      {"name": "user_id", "type": "integer", "nullable": false},
+      {"name": "product_id", "type": "integer", "nullable": false},
+      {"name": "added_at", "type": "timestamp", "nullable": false},
+      {"name": "priority", "type": "integer", "nullable": true},
+      {"name": "notes", "type": "text", "nullable": true}
+    ],
+    "relationships": [
+      {"source_column": "user_id", "target_table": "users", "target_column": "user_id"},
+      {"source_column": "product_id", "target_table": "products", "target_column": "product_id"}
+    ],
+    "row_count": 95000,
+    "profile": {
+      "rows_sampled": 1000,
+      "completeness": {
+        "wishlist_id": 1.0,
+        "user_id": 1.0,
+        "product_id": 1.0,
+        "added_at": 1.0,
+        "priority": 0.55,
+        "notes": 0.25
+      },
+      "uniqueness_ratio": {
+        "wishlist_id": 1.0,
+        "user_id": 0.45,
+        "product_id": 0.35,
+        "added_at": 0.98,
+        "priority": 0.01,
+        "notes": 0.88
+      }
+    },
+    "ai_summary": "The 'wishlists' table captures customer product interests with 95,000 saved items. Users can bookmark products for future purchase, with optional priority ranking and personal notes. This data reveals customer preferences and purchase intent, valuable for personalized marketing and inventory planning. Wishlist analytics help identify trending products and optimize promotional strategies."
+  }
+}
