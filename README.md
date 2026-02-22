@@ -2,10 +2,14 @@
 
 An intelligent tool that automatically analyzes PostgreSQL databases and generates comprehensive documentation using AI.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Now-brightgreen?style=for-the-badge)](https://ai-dd-frontend.vercel.app)
+
 ![AI Data Dictionary](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?style=flat-square&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-336791?style=flat-square&logo=postgresql)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript)
+
+## 🌐 [Try Live Demo](https://ai-dd-frontend.vercel.app)
 
 ## ✨ Features
 
