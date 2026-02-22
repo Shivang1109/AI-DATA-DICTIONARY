@@ -333,8 +333,7 @@ This project is open source and available under the MIT License.
 **Shivang Pathak**
 
 - GitHub: [@Shivang1109](https://github.com/Shivang1109)
-- LinkedIn: [Connect with me](https://linkedin.com/in/shivang-pathak)
-- Portfolio: [View my work](https://your-portfolio.com)
+- LinkedIn: [Connect with me](https://www.linkedin.com/in/shivang-pathak-411b18315/)
 
 ---
 
@@ -350,7 +349,7 @@ This project is open source and available under the MIT License.
 ## 📞 Support
 
 If you have any questions or need help:
-- 📧 Email: your.email@example.com
+- 📧 Email: shivangpathak11@gmail.com
 - 💬 Open an issue on GitHub
 - 🌟 Star this repo if you find it helpful!
 
