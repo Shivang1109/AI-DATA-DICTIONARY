@@ -38,7 +38,8 @@ export default function ConnectPage() {
     }, 200);
 
     try {
-      const res = await fetch("http://localhost:8000/analyze-database", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://web-production-8d47.up.railway.app";
+      const res = await fetch(`${API_URL}/analyze-database`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

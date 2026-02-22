@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://web-production-8d47.up.railway.app";
 
 export async function analyzeDatabase(config: {
   host: string;
