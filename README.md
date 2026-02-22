@@ -1,86 +1,40 @@
-# 🚀 AI Data Dictionary - Enterprise Schema Intelligence Platform
+# 🤖 AI Data Dictionary
 
-> Transform your PostgreSQL databases into living, intelligent documentation with AI-powered insights, data quality analytics, and interactive visualizations.
+An intelligent tool that automatically analyzes PostgreSQL databases and generates comprehensive documentation using AI.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
-![Next.js](https://img.shields.io/badge/next.js-15-black.svg)
+![AI Data Dictionary](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?style=flat-square&logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-336791?style=flat-square&logo=postgresql)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript)
 
-## ✨ Key Features
+## ✨ Features
 
-### 🤖 AI-Powered Analysis
-- **Intelligent Summaries**: GPT-powered business-friendly explanations for every table
-- **Smart Recommendations**: AI suggests optimal usage patterns and best practices
-- **Automated Documentation**: Generate comprehensive docs without manual effort
+- 🔍 **Auto Schema Extraction** - Automatically discover tables, columns, and relationships
+- 🤖 **AI-Powered Summaries** - Generate business-friendly explanations for tables
+- 📊 **Data Quality Analysis** - Completeness, uniqueness, and quality metrics
+- 🔗 **Relationship Mapping** - Visual foreign key relationship graphs
+- 📈 **Data Visualization** - Interactive charts and quality metrics
+- 💾 **Export Capabilities** - Export to JSON, CSV, and PDF
+- 🎨 **Modern UI** - Beautiful, responsive interface with light theme
+- 🚀 **Demo Mode** - Try it instantly with 6.2M sample records
 
-### 📊 Advanced Analytics & Visualization
-- **Interactive Charts**: Bar charts for completeness and uniqueness metrics using Recharts
-- **Data Quality Metrics**: Completeness, uniqueness, and statistical analysis
-- **Quality Scoring**: Automatic quality assessment with color-coded indicators (High/Medium/Low)
-- **Visual Relationship Graphs**: Interactive data lineage and foreign key mapping
-- **Comparison Views**: Side-by-side table comparison with detailed metrics
-
-### 🔍 Powerful Search & Discovery
-- **Advanced Search**: Real-time search across tables with instant results
-- **Smart Filters**: Filter by data quality levels (High ≥90%, Medium 70-89%, Low <70%)
-- **Quality Indicators**: Color-coded dots and badges show table health at a glance
-- **Tabbed Interface**: Organized views for Details, Analytics, and Lineage
-
-### 🎨 Modern UI/UX
-- **Dark/Light Themes**: Toggle between themes with persistent preference
-- **Toast Notifications**: Real-time feedback for all actions (success, error, loading)
-- **Loading Skeletons**: Professional loading states that match content layout
-- **Smooth Animations**: 60fps transitions and hover effects
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile
-- **Glass-morphism**: Modern frosted glass effects throughout
-
-### 📤 Export & Share
-- **Multiple Formats**: Export as JSON, CSV, or PDF with one click
-- **Professional PDFs**: Auto-generated documentation with tables, summaries, and statistics
-- **Toast Feedback**: Instant confirmation of successful exports
-- **Formatted Output**: Clean, readable exports for all formats
-
-### ⚡ Developer Experience
-- **Massive Demo Dataset**: 10 tables with 6.2M+ records for realistic testing
-- **Loading States**: Skeleton screens for smooth UX
-- **Error Handling**: Comprehensive error messages and recovery
-- **Type Safety**: Full TypeScript support
-- **Component Library**: Reusable UI components
-
-## 🛠️ Tech Stack
-
-### Backend
-- **FastAPI**: High-performance Python web framework
-- **PostgreSQL**: Database connectivity via psycopg2
-- **OpenAI GPT**: AI-powered summaries and insights
-- **Pydantic**: Data validation and settings management
-
-### Frontend
-- **Next.js 14**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **Tailwind CSS v3**: Modern utility-first styling
-- **Recharts**: Interactive data visualizations (bar charts, quality metrics)
-- **React Hot Toast**: Beautiful toast notifications
-- **jsPDF + jspdf-autotable**: Professional PDF generation
-- **Lucide React**: Beautiful icon library (500+ icons)
-
-## 🚀 Quick Start
+## � Quick Start
 
 ### Prerequisites
+
 - Python 3.8+
 - Node.js 18+
-- PostgreSQL database (optional - demo mode available)
+- PostgreSQL (optional - demo mode works without it)
 
 ### Installation
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd ai_data_dictionary
+git clone https://github.com/Shivang1109/AI-DATA-DICTIONARY.git
+cd AI-DATA-DICTIONARY
 ```
 
-2. **Backend Setup**
+2. **Setup Backend**
 ```bash
 # Create virtual environment
 python -m venv .venv
@@ -89,199 +43,157 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env and add your OpenAI API key
+# Start backend
+uvicorn app.main:app --reload
 ```
 
-3. **Frontend Setup**
+Backend runs at: http://localhost:8000
+
+3. **Setup Frontend**
 ```bash
 cd ai-dd-frontend
+
+# Install dependencies
 npm install
-```
 
-4. **Start the Application**
-```bash
-# Terminal 1 - Backend (from root directory)
-source .venv/bin/activate
-uvicorn app.main:app --reload
-
-# Terminal 2 - Frontend (from ai-dd-frontend directory)
+# Start development server
 npm run dev
 ```
 
-5. **Access the Application**
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Docs: http://localhost:8000/docs
+Frontend runs at: http://localhost:3000
 
-## 📖 Usage Guide
+## 🎯 Usage
 
-### Connecting a Database
+### Demo Mode (No Database Required)
 
-1. Navigate to the **Connect** page
-2. Enter your PostgreSQL credentials:
-   - Host (e.g., localhost)
-   - Port (default: 5432)
-   - Database name
-   - Username
-   - Password
-3. Or toggle **Demo Mode** to use sample data
-4. Click **Start Analysis**
+1. Open http://localhost:3000
+2. Click "Start Analyzing"
+3. Toggle "Demo Mode" ON
+4. Click "Start Analysis"
+5. Explore 10 tables with 6.2M records!
 
-### Exploring Results
+### Connect Your Database
 
-#### Dashboard View
-- View overall statistics (tables, columns, relationships)
-- See quality alerts for low-quality tables
-- Identify tables with most columns/relationships
+1. Go to Connect page
+2. Toggle "Demo Mode" OFF
+3. Enter your PostgreSQL credentials:
+   - Host: localhost
+   - Port: 5432
+   - Database: your_database
+   - Username: your_username
+   - Password: your_password
+4. Click "Start Analysis"
 
-#### Table Details
-- **Details Tab**: View columns, types, and relationships
-- **Analytics Tab**: Interactive charts and quality metrics
-- **Lineage Tab**: Visual relationship mapping
+## 📊 What You Get
 
-#### Advanced Features
-- **Search**: Use ⌘K to open advanced search
-- **Compare**: Select up to 3 tables for side-by-side comparison
-- **Export**: Download as JSON, CSV, or PDF
-- **Share**: Generate shareable links or email reports
+- **Table Overview** - Complete list of all tables with quality scores
+- **Column Details** - Data types, nullable status, completeness metrics
+- **Quality Metrics** - Visual charts showing data quality
+- **Relationships** - Foreign key connections and data lineage
+- **AI Summaries** - Business context for each table
+- **Export Options** - Download documentation in multiple formats
 
-### Keyboard Shortcuts
+## 🛠️ Tech Stack
 
-| Shortcut | Action |
-|----------|--------|
-| ⌘/Ctrl + K | Focus search |
-| ⌘/Ctrl + E | Toggle export menu |
-| ⌘/Ctrl + N | New analysis |
-| ⌘/Ctrl + H | Go to home |
-| ⌘/Ctrl + D | Go to explorer |
-| ? | Show shortcuts help |
+### Frontend
+- **Next.js 14** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Recharts** - Data visualization
+- **React Hot Toast** - Notifications
+
+### Backend
+- **FastAPI** - Python web framework
+- **PostgreSQL** - Database
+- **Psycopg2** - PostgreSQL adapter
+- **Python 3.8+** - Backend language
+
+## 📁 Project Structure
+
+```
+AI-DATA-DICTIONARY/
+├── app/                      # Backend (FastAPI)
+│   ├── api/                  # API routes
+│   ├── connectors/           # Database connectors
+│   ├── metadata/             # Schema extraction
+│   ├── profiler/             # Data profiling
+│   ├── ai_engine/            # AI summarization
+│   └── main.py               # FastAPI app
+├── ai-dd-frontend/           # Frontend (Next.js)
+│   ├── app/                  # Pages
+│   ├── components/           # React components
+│   ├── lib/                  # Utilities
+│   └── public/               # Static assets
+├── demo_data.json            # Demo database (small)
+├── demo_data_large.json      # Demo database (large)
+└── requirements.txt          # Python dependencies
+```
+
+## 🚀 Deployment
+
+### Deploy Frontend (Vercel)
+
+```bash
+cd ai-dd-frontend
+vercel deploy --prod
+```
+
+Demo mode works without backend deployment!
+
+### Deploy Backend (Railway/Render)
+
+1. Connect your GitHub repo
+2. Deploy the `app/` folder
+3. Add PostgreSQL database
+4. Update frontend API URL
+
+See [DEPLOY.md](DEPLOY.md) for detailed instructions.
+
+## 📸 Screenshots
+
+### Home Page
+Beautiful landing page with feature showcase
+
+### Connect Page
+Easy database connection with demo mode toggle
+
+### Explorer Page
+Interactive data exploration with tabs for details, analytics, and lineage
+
+### Analytics
+Visual charts showing data quality metrics
 
 ## 🎯 Use Cases
 
-### For Data Engineers
-- Quickly understand unfamiliar databases
-- Document schema changes automatically
-- Track data quality metrics over time
-- Generate reports for stakeholders
-
-### For Data Analysts
-- Discover available data sources
-- Understand table relationships
-- Assess data quality before analysis
-- Find relevant columns quickly
-
-### For Database Administrators
-- Monitor schema health
-- Identify quality issues
-- Document database structure
-- Share knowledge with team
-
-### For Product Teams
-- Understand data models
-- Plan feature development
-- Assess data availability
-- Communicate with technical teams
-
-## 📊 Demo Data & Real Datasets
-
-### Built-in Demo Data
-
-The application includes comprehensive demo data for quick testing:
-- **10 tables** representing a complete e-commerce system
-- **6.2+ million simulated records** across all tables
-- Realistic relationships and foreign keys
-- Complete data quality metrics
-- AI-generated summaries for every table
-
-### Real-World Datasets (Recommended for Production)
-
-For testing with real data, we support these industry-standard datasets:
-
-1. **🎵 Chinook Database** (Easiest to setup)
-   - 11 tables (music store: artists, albums, tracks, invoices)
-   - 50,000+ records
-   - Quick setup: `./setup_chinook.sh`
-   - MIT licensed - fully free
-   - **Perfect for learning and demos**
-
-2. **🛒 Brazilian E-Commerce (Olist)**
-   - 9 tables (orders, customers, products, reviews)
-   - 100,000+ orders with real-world complexity
-   - Great for production testing
-   - CC BY-NC-SA 4.0 (free for non-commercial)
-
-3. **🚲 Bike Store Database**
-   - 9 tables (sales, inventory, customers)
-   - Clean, well-structured retail data
-   - CC0 (public domain)
-
-**See [REAL_DATASETS.md](REAL_DATASETS.md) for detailed setup instructions.**
-
-### Demo Data Tables Include:
-1. **users** (250,000 records) - Customer accounts with full profiles
-2. **products** (45,000 records) - Product catalog with detailed attributes
-3. **categories** (250 records) - Hierarchical product taxonomy
-4. **orders** (850,000 records) - Order history with complete lifecycle
-5. **order_items** (2.1M records) - Detailed line items for all orders
-6. **reviews** (125,000 records) - Customer product reviews and ratings
-7. **payments** (850,000 records) - Payment transactions and processing
-8. **shipping_addresses** (380,000 records) - Customer delivery locations
-9. **inventory_transactions** (1.5M records) - Stock movement audit log
-10. **wishlists** (95,000 records) - Customer saved items and preferences
-
-Each table includes:
-- Complete column definitions
-- Data quality metrics (completeness, uniqueness)
-- Foreign key relationships
-- AI-generated business summaries
-- Realistic data distributions
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
-```
-
-### Customization
-
-- **Theme Colors**: Edit `ai-dd-frontend/app/globals.css`
-- **API Endpoints**: Modify `ai-dd-frontend/lib/api.ts`
-- **Demo Data**: Update `demo_data.json`
+- **Data Documentation** - Auto-generate database documentation
+- **Data Quality** - Identify data quality issues
+- **Onboarding** - Help new team members understand the database
+- **Data Governance** - Track data lineage and relationships
+- **Database Migration** - Document existing schemas before migration
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📝 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is open source and available under the MIT License.
+
+## �‍💻 Author
+
+**Shivang Pathak**
+- GitHub: [@Shivang1109](https://github.com/Shivang1109)
 
 ## 🙏 Acknowledgments
 
-- OpenAI for GPT API
-- FastAPI team for the amazing framework
-- Next.js team for the React framework
-- All open-source contributors
+- Built with Next.js, FastAPI, and PostgreSQL
+- Inspired by modern data catalog tools
+- UI design inspired by contemporary dashboard aesthetics
 
-## 📧 Contact
+## 📞 Support
 
-For questions, suggestions, or support, please open an issue on GitHub.
+If you have any questions or need help, please open an issue on GitHub.
 
 ---
-
-**Made with ❤️ for the data community**
 
 ⭐ Star this repo if you find it helpful!
